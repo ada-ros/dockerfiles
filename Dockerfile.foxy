@@ -1,0 +1,18 @@
+# Dockerfile for Ubuntu LTS with GNAT and ROS2
+
+FROM ros:foxy
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y \
+        git \
+        gnat \
+        gprbuild \
+        ros-foxy-example-interfaces \
+        ros-foxy-turtlesim \
+        terminator \
+        wget && \
+    apt-get clean
+
+SHELL ["/bin/bash", "-c", "source /opt/ros/foxy/setup.bash"]
