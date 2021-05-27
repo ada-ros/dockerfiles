@@ -1,6 +1,6 @@
 # Dockerfile for Ubuntu LTS with GNAT and ROS2
 
-FROM ada-foxy:latest
+FROM mosteo/ada4ros2:foxy
 
 # ENV DEBIAN_FRONTEND=noninteractive
 
@@ -15,4 +15,4 @@ RUN apt-get update && \
     apt-get install -y webots && \
     apt-get clean
 
-# SHELL ["/bin/bash", "-c", "source /opt/ros/foxy/setup.bash"]
+SHELL ["/bin/bash", "-c", "source /opt/ros/foxy/setup.bash"]
