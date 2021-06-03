@@ -15,4 +15,4 @@ RUN apt-get update && \
         wget && \
     apt-get clean
 
-SHELL ["/bin/bash", "-c", "source /opt/ros/foxy/setup.bash"]
+# SHELL ["/bin/bash", "-c", "source /opt/ros/foxy/setup.bash"]

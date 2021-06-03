@@ -1,0 +1,22 @@
+# Dockerfile for Ubuntu LTS with GNAT and ROS2
+
+FROM mosteo/ada4ros2:foxy
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/nul
+
+RUN apt-get update && \
+    apt-get install -y \
+        apt \
+        ros-foxy-webots-* \
+        software-properties-common
+
+RUN wget -O- https://cyberbotics.com/Cyberbotics.asc | apt-key add - && \
+    apt-add-repository 'deb https://cyberbotics.com/debian/ binary-amd64/'
+ 
+RUN apt-get update && \
+    apt-get install -y webots && \
+    apt-get clean
+
+# SHELL ["/bin/bash", "-c", "source /opt/ros/foxy/setup.bash"]
